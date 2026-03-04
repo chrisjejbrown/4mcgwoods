@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <entry key="name">mcguire-woods-content</entry>
+  <entry key="version">1.0.0</entry>
+  <entry key="group">mcguire-woods</entry>
+  <entry key="description">McGuireWoods EDS content import package - all pages and navigation</entry>
+  <entry key="createdBy">excat-migration</entry>
+  <entry key="packageType">content</entry>
+</properties>
