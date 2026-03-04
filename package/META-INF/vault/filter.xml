@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-  <filter root="/content/mcguire-woods" mode="merge"/>
+  <filter root="/content/mcguire-woods/index" mode="merge"/>
+  <filter root="/content/mcguire-woods/services" mode="merge"/>
+  <filter root="/content/mcguire-woods/services/industries/energy" mode="merge"/>
+  <filter root="/content/mcguire-woods/services/industries/healthcare" mode="merge"/>
+  <filter root="/content/mcguire-woods/services/industries/private-equity" mode="merge"/>
+  <filter root="/content/mcguire-woods/services/practices/business-litigation" mode="merge"/>
+  <filter root="/content/mcguire-woods/services/practices/data-privacy-cybersecurity" mode="merge"/>
+  <filter root="/content/mcguire-woods/services/practices/intellectual-property" mode="merge"/>
+  <filter root="/content/mcguire-woods/nav" mode="merge"/>
+  <filter root="/content/mcguire-woods/footer" mode="merge"/>
 </workspaceFilter>
