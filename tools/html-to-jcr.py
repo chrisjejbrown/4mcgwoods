@@ -17,7 +17,7 @@ WORKSPACE = '/workspace'
 CONTENT_DIR = os.path.join(WORKSPACE, 'content')
 PACKAGE_DIR = os.path.join(WORKSPACE, 'package')
 JCR_BASE = os.path.join(PACKAGE_DIR, 'jcr_root', 'content', 'mcguire-woods')
-OUTPUT_ZIP = os.path.join(WORKSPACE, 'mcguire-woods-content-5.0.0.zip')
+OUTPUT_ZIP = os.path.join(WORKSPACE, 'mcguire-woods-content-6.0.0.zip')
 
 # AEM Resource Types
 RT_PAGE = 'core/franklin/components/page/v1/page'
@@ -620,13 +620,13 @@ def build_page_xml(title, sections_data, page_metadata):
     # Root container node - AEM delivery pipeline expects jcr:content/root
     root_container = jcr_content.add_child(XmlNode('root', **{
         'jcr:primaryType': 'nt:unstructured',
-        'sling:resourceType': 'core/franklin/components/root/v1/root',
     }))
 
     for si, sd in enumerate(sections_data):
         sec_attrs = {
             'jcr:primaryType': 'nt:unstructured',
             'sling:resourceType': RT_SECTION,
+            'model': 'section',
         }
         for k, v in sd.get('metadata', {}).items():
             sec_attrs[k] = v
@@ -767,7 +767,7 @@ def main():
             ' "http://java.sun.com/dtd/properties.dtd">\n'
             '<properties>\n'
             '  <entry key="name">mcguire-woods-content</entry>\n'
-            '  <entry key="version">5.0.0</entry>\n'
+            '  <entry key="version">6.0.0</entry>\n'
             '  <entry key="group">mcguire-woods</entry>\n'
             '  <entry key="description">McGuireWoods EDS content -'
             ' JCR structured content for Universal Editor</entry>\n'
