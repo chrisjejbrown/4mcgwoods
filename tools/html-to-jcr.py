@@ -17,7 +17,7 @@ WORKSPACE = '/workspace'
 CONTENT_DIR = os.path.join(WORKSPACE, 'content')
 PACKAGE_DIR = os.path.join(WORKSPACE, 'package')
 JCR_BASE = os.path.join(PACKAGE_DIR, 'jcr_root', 'content', 'mcguire-woods')
-OUTPUT_ZIP = os.path.join(WORKSPACE, 'mcguire-woods-content-3.0.0.zip')
+OUTPUT_ZIP = os.path.join(WORKSPACE, 'mcguire-woods-content-4.0.0.zip')
 
 # AEM Resource Types
 RT_PAGE = 'core/franklin/components/page/v1/page'
@@ -601,6 +601,8 @@ def build_page_xml(title, sections_data, page_metadata):
         'jcr:primaryType': 'cq:PageContent',
         'jcr:title': title,
         'sling:resourceType': RT_PAGE,
+        'cq:conf': '/conf/mcguire-woods',
+        'cq:template': '/conf/mcguire-woods/settings/wcm/templates/page',
     }
 
     # Map page metadata to JCR properties
@@ -759,7 +761,7 @@ def main():
             ' "http://java.sun.com/dtd/properties.dtd">\n'
             '<properties>\n'
             '  <entry key="name">mcguire-woods-content</entry>\n'
-            '  <entry key="version">3.0.0</entry>\n'
+            '  <entry key="version">4.0.0</entry>\n'
             '  <entry key="group">mcguire-woods</entry>\n'
             '  <entry key="description">McGuireWoods EDS content -'
             ' JCR structured content for Universal Editor</entry>\n'
@@ -786,7 +788,9 @@ def main():
         '    <jcr:content\n'
         '        jcr:primaryType="cq:PageContent"\n'
         '        jcr:title="McGuireWoods"\n'
-        '        sling:resourceType="core/franklin/components/page/v1/page"/>\n'
+        '        sling:resourceType="core/franklin/components/page/v1/page"\n'
+        '        cq:conf="/conf/mcguire-woods"\n'
+        '        cq:allowedTemplates="[/conf/mcguire-woods/settings/wcm/templates/.*]"/>\n'
         '</jcr:root>\n'
     )
     with open(os.path.join(JCR_BASE, '.content.xml'), 'w', encoding='utf-8') as f:
