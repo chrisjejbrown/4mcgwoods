@@ -1,0 +1,157 @@
+/* carousel-initiatives: horizontal scrolling grid of initiative promo cards */
+
+.carousel-initiatives .carousel-initiatives-container {
+  position: relative;
+}
+
+.carousel-initiatives .carousel-initiatives-slides {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 16px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overflow: auto hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel-initiatives .carousel-initiatives-slides::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-initiatives .carousel-initiatives-slide {
+  flex: 0 0 calc(50% - 8px);
+  scroll-snap-align: start;
+}
+
+.carousel-initiatives .carousel-initiatives-card {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.carousel-initiatives .carousel-initiatives-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 15%);
+}
+
+.carousel-initiatives .carousel-initiatives-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* Navigation arrows */
+.carousel-initiatives .carousel-initiatives-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -8px;
+  right: -8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.carousel-initiatives .carousel-initiatives-nav button {
+  pointer-events: auto;
+  position: relative;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  border-radius: 50%;
+  padding: 0;
+  background-color: rgb(0 0 0 / 40%);
+  transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.carousel-initiatives .carousel-initiatives-nav button:hover,
+.carousel-initiatives .carousel-initiatives-nav button:focus-visible {
+  background-color: rgb(0 0 0 / 70%);
+}
+
+.carousel-initiatives .carousel-initiatives-nav button::after {
+  display: block;
+  content: '';
+  border: 2px solid #fff;
+  border-bottom: 0;
+  border-left: 0;
+  height: 8px;
+  width: 8px;
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 2px);
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+.carousel-initiatives .carousel-initiatives-nav button.slide-next::after {
+  transform: translate(-50%, -50%) rotate(45deg);
+  left: calc(50% - 2px);
+}
+
+/* Dot indicators */
+.carousel-initiatives .carousel-initiatives-indicators {
+  list-style: none;
+  margin: 0;
+  padding: 12px 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.carousel-initiatives .carousel-initiatives-indicator button {
+  width: 10px;
+  height: 10px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  background-color: #dadada;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.carousel-initiatives .carousel-initiatives-indicator button:disabled,
+.carousel-initiatives .carousel-initiatives-indicator button:hover,
+.carousel-initiatives .carousel-initiatives-indicator button:focus-visible {
+  background-color: var(--navy, #003b5c);
+}
+
+/* Mobile: show 1.5 cards to hint scrollability */
+@media (width < 600px) {
+  .carousel-initiatives .carousel-initiatives-slide {
+    flex: 0 0 75%;
+  }
+}
+
+/* Tablet: 2 cards */
+@media (width >= 600px) and (width < 900px) {
+  .carousel-initiatives .carousel-initiatives-slide {
+    flex: 0 0 calc(50% - 8px);
+  }
+}
+
+/* Desktop: 3 cards visible, hide nav */
+@media (width >= 900px) {
+  .carousel-initiatives .carousel-initiatives-slide {
+    flex: 0 0 calc(33.333% - 11px);
+  }
+
+  .carousel-initiatives .carousel-initiatives-nav {
+    display: none;
+  }
+
+  .carousel-initiatives .carousel-initiatives-indicators {
+    display: none;
+  }
+}

@@ -1,0 +1,89 @@
+/* cards-people: people profile cards – horizontal scroll */
+.cards-people > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 12px;
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cards-people > ul > li {
+  overflow: hidden;
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+}
+
+/* Image container with accent bar */
+.cards-people .cards-people-card-image {
+  line-height: 0;
+  position: relative;
+}
+
+.cards-people .cards-people-card-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60%;
+  height: 24px;
+  background-color: #ac3207;
+}
+
+.cards-people > ul > li img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+/* Info area – navy background with white text */
+.cards-people .cards-people-card-body {
+  background-color: var(--navy, #003b5c);
+  color: #fff;
+  padding: 20px 16px;
+}
+
+.cards-people .cards-people-card-body p {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.cards-people .cards-people-card-body a.button {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0;
+  margin: 8px 0 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  text-decoration: underline;
+  text-transform: none;
+}
+
+.cards-people .cards-people-card-body a.button:hover {
+  opacity: 0.8;
+}
+
+.cards-people .cards-people-card-body .button-container {
+  margin: 0;
+}
+
+/* Hide scrollbar but keep scrolling */
+.cards-people > ul::-webkit-scrollbar {
+  display: none;
+}
+
+@media (width >= 900px) {
+  .cards-people > ul > li {
+    flex: 0 0 300px;
+  }
+}

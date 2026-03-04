@@ -1,0 +1,148 @@
+/* search-bar section: burnt orange background matching McGuireWoods original */
+main .section.search-bar-container {
+  background-color: #ac3207;
+  padding: 48px 24px;
+}
+
+/* Section heading – white text */
+main .section.search-bar-container > h3 {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 24px;
+}
+
+/* search-bar block – transparent, section provides background */
+.search-bar {
+  background-color: transparent;
+  padding: 0;
+  max-width: 700px;
+}
+
+/* search box – bottom border style matching original */
+.search-bar .search-bar-box {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #fff;
+  gap: 0;
+}
+
+/* hide the search icon span */
+.search-bar .search-bar-box .icon {
+  display: none;
+}
+
+/* input – transparent with white text */
+.search-bar .search-bar-box input {
+  box-sizing: border-box;
+  display: block;
+  flex: 1;
+  margin: 0;
+  padding: 8px 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  color: #fff;
+  font-size: 18px;
+}
+
+.search-bar .search-bar-box input::placeholder {
+  color: rgb(255 255 255 / 70%);
+}
+
+.search-bar .search-bar-box input:focus {
+  outline: none;
+}
+
+/* "Search" button (if present) */
+.search-bar .search-bar-box button {
+  border: none;
+  border-radius: 0;
+  padding: 8px 16px;
+  margin: 0;
+  background-color: transparent;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: none;
+  cursor: pointer;
+}
+
+.search-bar .search-bar-box button:hover {
+  opacity: 0.8;
+  background-color: transparent;
+}
+
+/* search results */
+.search-bar ul.search-bar-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
+  gap: 24px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.search-bar ul.search-bar-results > li {
+  border: 1px solid rgb(255 255 255 / 20%);
+  background-color: rgb(255 255 255 / 10%);
+}
+
+.search-bar ul.search-bar-results > li > a {
+  display: block;
+  height: 100%;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.search-bar ul.search-bar-results > li > a:hover,
+.search-bar ul.search-bar-results > li > a:focus {
+  text-decoration: none;
+}
+
+.search-bar ul.search-bar-results > li .search-bar-result-title,
+.search-bar ul.search-bar-results > li p {
+  padding: 0 16px;
+  color: #fff;
+}
+
+.search-bar ul.search-bar-results > li .search-bar-result-title {
+  font-size: var(--body-font-size-m);
+  font-weight: normal;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.search-bar ul.search-bar-results > li .search-bar-result-title a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.search-bar ul.search-bar-results > li p {
+  font-size: var(--body-font-size-s);
+}
+
+.search-bar ul.search-bar-results > li .search-bar-result-image {
+  aspect-ratio: 4 / 3;
+}
+
+.search-bar ul.search-bar-results > li picture img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* no results */
+.search-bar ul.search-bar-results.no-results {
+  display: block;
+  margin-left: 34px;
+}
+
+.search-bar ul.search-bar-results.no-results > li {
+  border: none;
+}
+
+@media (width >= 900px) {
+  main .section.search-bar-container {
+    padding: 56px 32px;
+  }
+}

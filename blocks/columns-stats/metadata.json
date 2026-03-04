@@ -1,0 +1,31 @@
+{
+  "variantName": "columns-stats",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-02-25T20:40:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.mcguirewoods.com",
+    "originPage": "homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "compact",
+    "purpose": "statistics-grid",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading + stats grid (number + label)",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": ["statistics displays", "at-a-glance metrics", "firm facts sections"],
+    "notSuitableFor": ["text columns", "image galleries", "comparison tables"]
+  },
+  "usage": {
+    "pagesUsing": ["/content/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-02-25T20:40:00.000Z"
+  }
+}

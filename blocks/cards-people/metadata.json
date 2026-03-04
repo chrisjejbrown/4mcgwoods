@@ -1,0 +1,31 @@
+{
+  "variantName": "cards-people",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-02-25T20:40:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.mcguirewoods.com",
+    "originPage": "homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "people-cards",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "photo + name + title per card",
+    "buttonCount": 0,
+    "imageCount": 9
+  },
+  "reuseGuidance": {
+    "suitableFor": ["team member listings", "partner profiles", "staff directories"],
+    "notSuitableFor": ["product cards", "news articles", "feature grids"]
+  },
+  "usage": {
+    "pagesUsing": ["/content/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-02-25T20:40:00.000Z"
+  }
+}

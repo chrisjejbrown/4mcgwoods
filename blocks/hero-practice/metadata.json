@@ -1,0 +1,39 @@
+{
+  "variantName": "hero-practice",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-02-25T21:35:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.mcguirewoods.com/services/practices/business-litigation",
+    "originPage": "practice detail page",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "practice-hero",
+    "imagePattern": "large",
+    "structure": "heading + description + CTA + image"
+  },
+  "contentPattern": {
+    "structure": "H1 + paragraph + CTA button | image",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "practice area pages",
+      "industry pages",
+      "service detail pages"
+    ],
+    "notSuitableFor": [
+      "homepage hero with rotating slides",
+      "blog post headers"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/services/practices/business-litigation"],
+    "reuseCount": 1,
+    "lastUsed": "2026-02-25T21:35:00.000Z"
+  }
+}

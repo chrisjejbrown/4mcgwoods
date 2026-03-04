@@ -1,9 +1,11 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--background-color);
+  background-color: transparent;
   width: 100%;
-  z-index: 2;
+  z-index: 10;
   position: fixed;
+  top: 0;
+  color: #fff;
 }
 
 header nav {
@@ -28,6 +30,7 @@ header nav[aria-expanded='true'] {
     'tools tools' var(--nav-height) / auto 1fr;
   overflow-y: auto;
   min-height: 100dvh;
+  background-color: var(--navy);
 }
 
 @media (width >= 900px) {
@@ -42,6 +45,7 @@ header nav[aria-expanded='true'] {
   header nav[aria-expanded='true'] {
     min-height: 0;
     overflow: visible;
+    background-color: transparent;
   }
 }
 
@@ -51,7 +55,13 @@ header nav p {
 }
 
 header nav a:any-link {
-  color: currentcolor;
+  color: #fff;
+  text-decoration: none;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+  opacity: 0.9;
 }
 
 /* hamburger */
@@ -60,6 +70,7 @@ header nav .nav-hamburger {
   height: 22px;
   display: flex;
   align-items: center;
+  order: 3;
 }
 
 header nav .nav-hamburger button {
@@ -68,11 +79,20 @@ header nav .nav-hamburger button {
   border: 0;
   border-radius: 0;
   padding: 0;
-  background-color: var(--background-color);
-  color: inherit;
+  background-color: transparent;
+  color: #fff;
   overflow: initial;
   text-overflow: initial;
   white-space: initial;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
 }
 
 header nav .nav-hamburger-icon,
@@ -138,15 +158,20 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 /* brand */
 header .nav-brand {
   grid-area: brand;
-  flex-basis: 128px;
+  flex-basis: 220px;
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
 }
 
 header nav .nav-brand img {
-  width: 128px;
+  width: 200px;
   height: auto;
+  filter: brightness(0) invert(1);
+}
+
+header nav .nav-brand a {
+  display: inline-block;
 }
 
 /* sections */
@@ -241,9 +266,10 @@ header nav .nav-sections ul > li > ul > li {
     width: 200px;
     top: 150%;
     padding: 16px;
-    background-color: var(--light-color);
+    background-color: var(--navy);
     white-space: initial;
     z-index: 1;
+    border-radius: 4px;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
@@ -255,7 +281,7 @@ header nav .nav-sections ul > li > ul > li {
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
+    border-bottom: 8px solid var(--navy);
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
@@ -266,14 +292,41 @@ header nav .nav-sections ul > li > ul > li {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
-header nav .nav-tools .button {
-  margin: 0;
-  border: none;
-  padding: 0.5em;
+/* stylelint-disable-next-line no-descending-specificity */
+header nav .nav-tools a,
+header nav .nav-tools a.button {
+  font-size: 0;
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
   background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  text-transform: none;
   line-height: 0;
+}
+
+header nav .nav-tools .button-container {
+  display: inline;
+  margin: 0;
+}
+
+/* Search icon in tools */
+header nav .nav-tools a::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 /* breadcrumbs */

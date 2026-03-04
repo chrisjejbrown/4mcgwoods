@@ -1,0 +1,65 @@
+{
+  "definitions": [
+    {
+      "title": "Accordion Service",
+      "id": "accordion-service",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Accordion Service",
+              "filter": "accordion-service"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Accordion Service Item",
+      "id": "accordion-service-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Accordion Service Item",
+              "model": "accordion-service-item",
+              "summary": "Lorem Ipsum",
+              "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "accordion-service-item",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "summary",
+          "value": "",
+          "label": "Summary"
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "value": "",
+          "label": "Text",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "accordion-service",
+      "components": [
+        "accordion-service-item"
+      ]
+    }
+  ]
+}

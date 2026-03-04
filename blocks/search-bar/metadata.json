@@ -1,0 +1,31 @@
+{
+  "variantName": "search-bar",
+  "baseBlock": "search",
+  "version": "1.0.0",
+  "created": "2026-02-25T20:40:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.mcguirewoods.com",
+    "originPage": "homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "purpose": "search-input",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading + search input + button",
+    "buttonCount": 1,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": ["site search sections", "help pages", "knowledge base search"],
+    "notSuitableFor": ["navigation search", "filter search", "advanced search forms"]
+  },
+  "usage": {
+    "pagesUsing": ["/content/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-02-25T20:40:00.000Z"
+  }
+}

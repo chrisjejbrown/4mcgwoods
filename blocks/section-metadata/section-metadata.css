@@ -1,0 +1,4 @@
+/* section-metadata is processed by aem.js core - hide the rendered block */
+.section-metadata-wrapper {
+  display: none;
+}

@@ -1,0 +1,38 @@
+{
+  "variantName": "tabs-services",
+  "baseBlock": "tabs",
+  "version": "1.0.0",
+  "created": "2026-02-25T21:22:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.mcguirewoods.com/services/",
+    "originPage": "services landing page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "wide",
+    "purpose": "services-navigation",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "3 tabs + accordion link lists per tab",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "service/practice index pages",
+      "directory pages with categorized links",
+      "navigation landing pages"
+    ],
+    "notSuitableFor": [
+      "content tabs with rich media",
+      "product comparison tabs"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/services/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-02-25T21:22:00.000Z"
+  }
+}

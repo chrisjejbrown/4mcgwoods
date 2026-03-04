@@ -1,0 +1,31 @@
+{
+  "variantName": "accordion-service",
+  "baseBlock": "accordion",
+  "version": "1.0.0",
+  "created": "2026-02-25T20:40:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.mcguirewoods.com",
+    "originPage": "homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "service-faq",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading + expandable items (title + description)",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": ["client service FAQs", "practice area descriptions", "service offerings"],
+    "notSuitableFor": ["general FAQs", "product specifications", "technical documentation"]
+  },
+  "usage": {
+    "pagesUsing": ["/content/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-02-25T20:40:00.000Z"
+  }
+}

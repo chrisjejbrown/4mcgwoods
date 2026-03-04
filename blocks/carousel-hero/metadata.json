@@ -1,0 +1,31 @@
+{
+  "variantName": "carousel-hero",
+  "baseBlock": "carousel",
+  "version": "1.0.0",
+  "created": "2026-02-25T20:40:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.mcguirewoods.com",
+    "originPage": "homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "hero-slider",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "heading + CTA + background video per slide",
+    "buttonCount": 1,
+    "imageCount": 4
+  },
+  "reuseGuidance": {
+    "suitableFor": ["homepage hero sections", "landing page hero sliders", "full-width rotating banners"],
+    "notSuitableFor": ["small carousels", "image galleries", "testimonial sliders"]
+  },
+  "usage": {
+    "pagesUsing": ["/content/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-02-25T20:40:00.000Z"
+  }
+}
