@@ -17,7 +17,7 @@ WORKSPACE = '/workspace'
 CONTENT_DIR = os.path.join(WORKSPACE, 'content')
 PACKAGE_DIR = os.path.join(WORKSPACE, 'package')
 JCR_BASE = os.path.join(PACKAGE_DIR, 'jcr_root', 'content', 'mcguire-woods')
-OUTPUT_ZIP = os.path.join(WORKSPACE, 'mcguire-woods-content-2.0.0.zip')
+OUTPUT_ZIP = os.path.join(WORKSPACE, 'mcguire-woods-content-3.0.0.zip')
 
 # AEM Resource Types
 RT_PAGE = 'core/franklin/components/page/v1/page'
@@ -687,7 +687,7 @@ def _add_block_node(parent, comp, idx):
 # ============================================================
 
 CONTENT_MAP = {
-    'content/index.plain.html': ('', 'McGuireWoods'),
+    'content/index.plain.html': ('index', 'McGuireWoods'),
     'content/services.plain.html': ('services', 'Services'),
     'content/services/industries/energy.plain.html':
         ('services/industries/energy', 'Energy'),
@@ -759,7 +759,7 @@ def main():
             ' "http://java.sun.com/dtd/properties.dtd">\n'
             '<properties>\n'
             '  <entry key="name">mcguire-woods-content</entry>\n'
-            '  <entry key="version">2.0.0</entry>\n'
+            '  <entry key="version">3.0.0</entry>\n'
             '  <entry key="group">mcguire-woods</entry>\n'
             '  <entry key="description">McGuireWoods EDS content -'
             ' JCR structured content for Universal Editor</entry>\n'
@@ -774,6 +774,24 @@ def main():
                 '  <aggregates/>\n'
                 '  <handlers/>\n'
                 '</vaultfs>\n')
+
+    # Create site root node at /content/mcguire-woods
+    root_xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"'
+        ' xmlns:nt="http://www.jcp.org/jcr/nt/1.0"'
+        ' xmlns:cq="http://www.day.com/jcr/cq/1.0"'
+        ' xmlns:sling="http://sling.apache.org/jcr/sling/1.0"\n'
+        '    jcr:primaryType="cq:Page">\n'
+        '    <jcr:content\n'
+        '        jcr:primaryType="cq:PageContent"\n'
+        '        jcr:title="McGuireWoods"\n'
+        '        sling:resourceType="core/franklin/components/page/v1/page"/>\n'
+        '</jcr:root>\n'
+    )
+    with open(os.path.join(JCR_BASE, '.content.xml'), 'w', encoding='utf-8') as f:
+        f.write(root_xml)
+    print('Created site root: /content/mcguire-woods')
 
     # Process content pages
     pages = 0
