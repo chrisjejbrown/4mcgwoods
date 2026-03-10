@@ -79,6 +79,23 @@ function createSlide(row, slideIndex, carouselId) {
 
   row.querySelectorAll(':scope > div').forEach((column, colIdx) => {
     column.classList.add(`carousel-hero-slide-${colIdx === 0 ? 'image' : 'content'}`);
+
+    // Convert .mp4 links to <video> elements
+    if (colIdx === 0) {
+      const videoLink = column.querySelector('a[href$=".mp4"]');
+      if (videoLink) {
+        const video = document.createElement('video');
+        video.src = videoLink.href;
+        video.autoplay = true;
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.setAttribute('playsinline', '');
+        const p = videoLink.closest('p') || videoLink.parentElement;
+        p.replaceWith(video);
+      }
+    }
+
     slide.append(column);
   });
 

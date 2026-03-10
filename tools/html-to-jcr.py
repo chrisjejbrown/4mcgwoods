@@ -17,7 +17,7 @@ WORKSPACE = '/workspace'
 CONTENT_DIR = os.path.join(WORKSPACE, 'content')
 PACKAGE_DIR = os.path.join(WORKSPACE, 'package')
 JCR_BASE = os.path.join(PACKAGE_DIR, 'jcr_root', 'content', 'mcguire-woods')
-OUTPUT_ZIP = os.path.join(WORKSPACE, 'mcguire-woods-content-6.0.0.zip')
+OUTPUT_ZIP = os.path.join(WORKSPACE, 'mcguire-woods-content-8.0.0.zip')
 
 # AEM Resource Types
 RT_PAGE = 'core/franklin/components/page/v1/page'
@@ -618,8 +618,10 @@ def build_page_xml(title, sections_data, page_metadata):
     jcr_content = root.add_child(XmlNode('jcr:content', **content_attrs))
 
     # Root container node - AEM delivery pipeline expects jcr:content/root
+    # sling:resourceType is REQUIRED - without it <main> element is not rendered at all
     root_container = jcr_content.add_child(XmlNode('root', **{
         'jcr:primaryType': 'nt:unstructured',
+        'sling:resourceType': 'core/franklin/components/root/v1/root',
     }))
 
     for si, sd in enumerate(sections_data):
@@ -752,12 +754,22 @@ def main():
     ensure_dir(JCR_BASE)
 
     # META-INF / vault files
+    # Use per-page filters to avoid overwriting the site root or other pages
+    filter_roots = []
+    for _rel, (jcr_sub, _title) in CONTENT_MAP.items():
+        filter_roots.append(f'/content/mcguire-woods/{jcr_sub}')
+    for _rel, (jcr_sub, _title) in NAV_FOOTER_MAP.items():
+        filter_roots.append(f'/content/mcguire-woods/{jcr_sub}')
+    # NOTE: Do NOT add intermediate folders to filter - they already exist
+    # in AEM as cq:Page nodes. Adding sling:OrderedFolder would conflict.
+
     with open(os.path.join(PACKAGE_DIR, 'META-INF', 'vault',
                            'filter.xml'), 'w') as f:
-        f.write('<?xml version="1.0" encoding="UTF-8"?>\n'
-                '<workspaceFilter version="1.0">\n'
-                '  <filter root="/content/mcguire-woods" mode="merge"/>\n'
-                '</workspaceFilter>\n')
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        f.write('<workspaceFilter version="1.0">\n')
+        for froot in filter_roots:
+            f.write(f'  <filter root="{froot}" mode="merge"/>\n')
+        f.write('</workspaceFilter>\n')
 
     with open(os.path.join(PACKAGE_DIR, 'META-INF', 'vault',
                            'properties.xml'), 'w') as f:
@@ -767,7 +779,7 @@ def main():
             ' "http://java.sun.com/dtd/properties.dtd">\n'
             '<properties>\n'
             '  <entry key="name">mcguire-woods-content</entry>\n'
-            '  <entry key="version">6.0.0</entry>\n'
+            '  <entry key="version">8.0.0</entry>\n'
             '  <entry key="group">mcguire-woods</entry>\n'
             '  <entry key="description">McGuireWoods EDS content -'
             ' JCR structured content for Universal Editor</entry>\n'
@@ -783,25 +795,10 @@ def main():
                 '  <handlers/>\n'
                 '</vaultfs>\n')
 
-    # Create site root node at /content/mcguire-woods
-    root_xml = (
-        '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"'
-        ' xmlns:nt="http://www.jcp.org/jcr/nt/1.0"'
-        ' xmlns:cq="http://www.day.com/jcr/cq/1.0"'
-        ' xmlns:sling="http://sling.apache.org/jcr/sling/1.0"\n'
-        '    jcr:primaryType="cq:Page">\n'
-        '    <jcr:content\n'
-        '        jcr:primaryType="cq:PageContent"\n'
-        '        jcr:title="McGuireWoods"\n'
-        '        sling:resourceType="core/franklin/components/page/v1/page"\n'
-        '        cq:conf="/conf/mcguire-woods"\n'
-        '        cq:allowedTemplates="[/conf/mcguire-woods/settings/wcm/templates/.*]"/>\n'
-        '</jcr:root>\n'
-    )
-    with open(os.path.join(JCR_BASE, '.content.xml'), 'w', encoding='utf-8') as f:
-        f.write(root_xml)
-    print('Created site root: /content/mcguire-woods')
+    # NOTE: Do NOT create site root .content.xml at /content/mcguire-woods
+    # The site root already exists in AEM (created by site template).
+    # Overwriting it breaks the Sling rendering chain and page rendering.
+    print('Skipping site root .content.xml (preserving existing AEM site config)')
 
     # Process content pages
     pages = 0
@@ -855,15 +852,11 @@ def main():
         print(f'  -> {jcr_sub}')
         pages += 1
 
-    # Intermediate folder nodes
-    for fpath, ftitle in INTERMEDIATE_FOLDERS.items():
-        fdir = os.path.join(JCR_BASE, fpath)
-        ensure_dir(fdir)
-        cxpath = os.path.join(fdir, '.content.xml')
-        if not os.path.exists(cxpath):
-            with open(cxpath, 'w', encoding='utf-8') as f:
-                f.write(create_sling_folder_xml(ftitle))
-            print(f'Created folder: {fpath}')
+    # NOTE: Intermediate folders (services/industries, services/practices)
+    # already exist in AEM as cq:Page nodes. Do NOT create .content.xml
+    # for them - it would conflict with the existing cq:Page node type.
+    # The ensure_dir calls when processing child pages create the
+    # directory structure needed for the ZIP without .content.xml files.
 
     # Build ZIP
     print(f'\nBuilding ZIP: {OUTPUT_ZIP}')

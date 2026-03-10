@@ -63,6 +63,14 @@
   object-fit: cover;
 }
 
+.carousel-hero .carousel-hero-slide .carousel-hero-slide-image video {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
 .carousel-hero .carousel-hero-slide .carousel-hero-slide-content {
   z-index: 1;
   margin: 32px;

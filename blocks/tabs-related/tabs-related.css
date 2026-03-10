@@ -1,3 +1,15 @@
+/* Dark navy wrapper matching original */
+.tabs-related-container {
+  background-color: #003b5c;
+  color: #fff;
+}
+
+.tabs-related-container .tabs-related-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 32px;
+}
+
 .tabs-related .tabs-related-list {
   display: flex;
   gap: 0.5ch;
@@ -21,11 +33,11 @@
 .tabs-related .tabs-related-list button {
   flex: 0 0 max-content;
   margin: 0;
-  border: 1px solid #dadada;
+  border: 1px solid rgb(255 255 255 / 30%);
   border-radius: 0;
   padding: 0.5em;
-  background-color: var(--light-color);
-  color: initial;
+  background-color: transparent;
+  color: #fff;
   font-weight: bold;
   line-height: unset;
   text-align: initial;
@@ -39,20 +51,33 @@
   margin: 0;
 }
 
-
 .tabs-related .tabs-related-list button[aria-selected='true'] {
-  border-bottom: 1px solid var(--background-color);
-  background-color: var(--background-color);
+  border-bottom: 1px solid rgb(255 255 255 / 60%);
+  background-color: rgb(255 255 255 / 10%);
   cursor: initial;
 }
 
 .tabs-related .tabs-related-panel {
   margin-top: -1px;
   padding: 24px;
-  border: 1px solid #dadada;
+  border: 1px solid rgb(255 255 255 / 20%);
   overflow: auto;
 }
 
 .tabs-related .tabs-related-panel[aria-hidden='true'] {
   display: none;
+}
+
+/* Links inside tab panels should be white */
+.tabs-related .tabs-related-panel a {
+  color: #fff;
+}
+
+.tabs-related .tabs-related-panel a:hover {
+  opacity: 0.8;
+}
+
+/* List items in tab panels */
+.tabs-related .tabs-related-panel li {
+  padding: 6px 0;
 }

@@ -1,5 +1,10 @@
 {
   "type": "xwalk",
   "contentHostUrl": "author-p107109-e1000961.adobeaemcloud.com",
-  "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json"
+  "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json",
+  "aemSitePath": "/content/mcguire-woods",
+  "aemAssetsFolderPath": "/content/dam/mcguire-woods",
+  "aemSiteName": "mcguire-woods",
+  "aemSiteTitle": "Mcguire Woods",
+  "baseUrl": "https://author-p107109-e1000961.adobeaemcloud.com/content/mcguire-woods/index.html"
 }
