@@ -137,12 +137,15 @@
 }
 
 .accordion-service-container > .default-content-wrapper:nth-child(3) h3 a {
+  display: block;
+  margin-top: 8px;
   color: #fff;
-  text-decoration: none;
+  text-decoration: underline;
+  font-size: 0.75em;
 }
 
 .accordion-service-container > .default-content-wrapper:nth-child(3) h3 a:hover {
-  text-decoration: underline;
+  opacity: 0.85;
 }
 
 @media (width >= 900px) {
