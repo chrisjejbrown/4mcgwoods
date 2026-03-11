@@ -17,7 +17,7 @@ WORKSPACE = '/workspace'
 CONTENT_DIR = os.path.join(WORKSPACE, 'content')
 PACKAGE_DIR = os.path.join(WORKSPACE, 'package')
 JCR_BASE = os.path.join(PACKAGE_DIR, 'jcr_root', 'content', 'mcguire-woods')
-OUTPUT_ZIP = os.path.join(WORKSPACE, 'mcguire-woods-content-8.0.0.zip')
+OUTPUT_ZIP = os.path.join(WORKSPACE, 'mcguire-woods-content-9.0.0.zip')
 
 # AEM Resource Types
 RT_PAGE = 'core/franklin/components/page/v1/page'
@@ -729,13 +729,23 @@ def ensure_dir(path):
     os.makedirs(path, exist_ok=True)
 
 
-def create_sling_folder_xml(title):
+def create_intermediate_page_xml(title):
+    """Create a cq:Page .content.xml for intermediate navigation folders."""
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"'
-        ' xmlns:sling="http://sling.apache.org/jcr/sling/1.0"\n'
-        f'    jcr:primaryType="sling:OrderedFolder"'
-        f' jcr:title="{xml_attr_escape(title)}"/>\n'
+        '<jcr:root\n'
+        '    xmlns:jcr="http://www.jcp.org/jcr/1.0"\n'
+        '    xmlns:nt="http://www.jcp.org/jcr/nt/1.0"\n'
+        '    xmlns:cq="http://www.day.com/jcr/cq/1.0"\n'
+        '    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"\n'
+        '    jcr:primaryType="cq:Page">\n'
+        '    <jcr:content\n'
+        '        jcr:primaryType="cq:PageContent"\n'
+        f'        jcr:title="{xml_attr_escape(title)}"\n'
+        '        sling:resourceType="core/franklin/components/page/v1/page"\n'
+        '        cq:conf="/conf/mcguire-woods"\n'
+        '        cq:template="/conf/mcguire-woods/settings/wcm/templates/page"/>\n'
+        '</jcr:root>\n'
     )
 
 
@@ -760,8 +770,11 @@ def main():
         filter_roots.append(f'/content/mcguire-woods/{jcr_sub}')
     for _rel, (jcr_sub, _title) in NAV_FOOTER_MAP.items():
         filter_roots.append(f'/content/mcguire-woods/{jcr_sub}')
-    # NOTE: Do NOT add intermediate folders to filter - they already exist
-    # in AEM as cq:Page nodes. Adding sling:OrderedFolder would conflict.
+    # Add intermediate folders to filter as cq:Page nodes
+    for folder_path in INTERMEDIATE_FOLDERS:
+        filter_roots.append(f'/content/mcguire-woods/{folder_path}')
+    # Sort so parents come before children
+    filter_roots.sort()
 
     with open(os.path.join(PACKAGE_DIR, 'META-INF', 'vault',
                            'filter.xml'), 'w') as f:
@@ -852,11 +865,14 @@ def main():
         print(f'  -> {jcr_sub}')
         pages += 1
 
-    # NOTE: Intermediate folders (services/industries, services/practices)
-    # already exist in AEM as cq:Page nodes. Do NOT create .content.xml
-    # for them - it would conflict with the existing cq:Page node type.
-    # The ensure_dir calls when processing child pages create the
-    # directory structure needed for the ZIP without .content.xml files.
+    # Generate intermediate folder .content.xml as proper cq:Page nodes
+    for folder_path, folder_title in INTERMEDIATE_FOLDERS.items():
+        folder_dir = os.path.join(JCR_BASE, folder_path)
+        ensure_dir(folder_dir)
+        xml = create_intermediate_page_xml(folder_title)
+        with open(os.path.join(folder_dir, '.content.xml'), 'w') as f:
+            f.write(xml)
+        print(f'  -> intermediate: {folder_path} (cq:Page)')
 
     # Build ZIP
     print(f'\nBuilding ZIP: {OUTPUT_ZIP}')
