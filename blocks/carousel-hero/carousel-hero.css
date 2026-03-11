@@ -1,5 +1,11 @@
 /* carousel-hero: full-width hero slider matching McGuireWoods design */
 
+/* Full-width: override wrapper constraints */
+.carousel-hero-container .carousel-hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
 /* Hide decorative SVG default content above carousel */
 .carousel-hero-container > .default-content-wrapper {
   display: none;
